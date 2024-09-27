@@ -1,0 +1,611 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHUNTECH GAME</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: rgb(5, 3, 17);
+            background-size: cover;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: rgb(41, 11, 11);
+            flex-direction: column;
+            border-top: .20vw solid #ffcb4d;
+            border-radius: 1vw;
+            margin-top: 20vh;
+    
+
+
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+
+        }
+
+        
+.head_container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 25vw;
+    margin-top: .5vw;
+}
+
+
+ .last_container
+  {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%; /* Adjust to take full width */
+    height: 13vh; /* Increase height for better visibility */
+    border-radius: 3vw;
+    background-color: rgb(27, 17, 85);
+
+  }
+
+
+.boxes3 {
+    width: 70px; /* Increased for better visibility */
+    height: 10vh; /* Adjust height */
+    border-radius: 9vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* For hover effects */
+}
+
+
+.last_imgs {
+    pointer-events: none;
+    width: 5vw; /* Adjusted to fit container */
+    height: auto;
+}
+
+.pickaxe {
+    width: 4vw; /* Match other images */
+}
+
+.friends {
+    width: 4.5vw;
+}
+
+.last_coin {
+    width: 3.5vw;
+    margin-bottom: 0.5vh;
+}
+
+.last_txts {
+    color: #ffffff;
+    font-size: 1vw; /* Increased font size */
+    font-weight: 400;
+    margin: 0;
+}
+
+.box31, .box32, .box33, .box34, .box35 {
+    /* background-color: #201F21; */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Add smooth transitions */
+}
+
+/* Hover effect for boxes */
+.boxes3:hover {
+    transform: scale(1.1); /* Slight zoom effect */
+    background-color: #333; /* Change background color on hover */
+}
+
+/* Hover effect for images */
+.boxes3:hover .last_imgs {
+    transform: scale(1.2); /* Enlarge image on hover */
+}
+
+/* Hover effect for text */
+.boxes3:hover .last_txts {
+    color: #ffcb4d; /* Change text color on hover */
+}
+
+
+
+        img {
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .game-container {
+            text-align: center;
+            position: relative;
+        }
+
+        .scoreboard {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #fbc531;
+        }
+
+        .hamster-border {
+            position: relative;
+            width: 230px;
+            height: 230px;
+            margin: 0 auto;
+            border-radius: 50%;
+            padding: 15px;
+            background: linear-gradient(to bottom, rgba(51, 78, 155, 0.9), rgba(38, 35, 35, 0.68));
+        }
+
+        .hamster-area
+         {
+            position: relative;
+            width: 230px;
+            height: 230px;
+            margin: 0 auto;
+            border-radius: 50%;
+            padding: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.9));
+        }
+
+        .pics {
+            width: 230px;
+            height: auto;
+            display: block;
+            padding-top: 0px;
+        }
+
+        .point {
+            position: absolute;
+            font-size: 24px;
+            color: #fff;
+            font-weight: bold;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .flying-point {
+            opacity: 1;
+            animation: point-fly 1s forwards;
+        }
+
+        @keyframes point-fly {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(calc(var(--scoreboard-x) - var(--click-x)), calc(var(--scoreboard-y) - var(--click-y))) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .hitting {
+            animation: hamster-hit 0.2s forwards;
+        }
+
+        @keyframes hamster-hit {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Social links section */
+        .tab-content {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .earn-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .earn-item img {
+            width: 32px;
+            height: auto;
+            transition: transform 0.3s;
+        }
+
+        .earn-item a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: transform 0.3s;
+        }
+
+        .bottom-navigation {
+    position: fixed; /* Fixed position at the bottom */
+    bottom: 16px; /* Distance from the bottom */
+    left: 0; /* Align to the left */
+    right: 0; /* Align to the right */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-around; /* Distribute items evenly */
+    background-color: rgba(23, 23, 23, 0.752); /* Background color with transparency */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    border: 1px solid #ffffff; /* Border color */
+    border-radius: 60px; /* Round corners */
+    padding: 8px; /* Add padding */
+    margin: 0 24px; /* Add horizontal margin */
+    z-index: 1000; /* Set stack order */
+}
+
+.bottom-navigation a {
+    color: #ffffff; /* Text color */
+    text-decoration: none; /* Remove underline */
+    width: 100%; /* Full width */
+    font-size: 1em; /* Set font size */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background color and text color */
+}
+
+.bottom-navigation a:hover {
+    background-color: rgba(34, 29, 134, 0.891); /* Background color on hover */
+}
+
+/* Tab link styles */
+.tab-link {
+    background: none; /* No background */
+    border: 0px solid #ffffff; /* No border */
+    padding: 10px 20px; /* Add padding */
+    cursor: pointer; /* Change cursor on hover */
+    color: #ffffff; /* Text color */
+    margin: 0 4px; /* Add horizontal margin */
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+    border-radius: 35px; /* Round corners */
+}
+
+        .earn-item:hover img,
+        .earn-item:hover a
+        {
+            transform: scale(1.2);
+        }
+
+
+
+.heading_container {
+    display: table-column;
+    flex-direction: column-reverse;
+    position:absolute;
+    top: 0;
+    width: 90%;
+    margin: 1vh 0 0 1.5vw; /* Adjust margin for spacing */
+    background-color: rgb(5, 3, 17); /* Added background color for better visibility */
+    border-radius: 15px; /* Rounded corners for a softer look */
+    padding: 10px; /* Add padding for spacing */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+.name_con {
+    display:flex;
+    align-items: center;
+    margin-bottom: 1vh; /* Add spacing between name and rank */
+}
+
+.img1 {
+    pointer-events: none;
+    width: 5vw; /* Slightly increased for better visibility */
+    border-radius: 50%; /* Optional: Make it circular */
+}
+
+.name {
+    color: white;
+    font-size: 1.4vw; /* Slightly increased font size */
+    font-weight: 600;
+    margin-left: 10px; /* Add space between image and name */
+}
+
+.rank_perhour {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1vh; /* Spacing below rank section */
+}
+
+.rank_bar {
+    background-color: #ffffff00;
+    width: 35%;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    border-radius: 10px; /* Round the corners */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+}
+
+.rank {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rank_txt1 {
+    color: white;
+    margin: 0;
+    font-size: 1vw;
+    font-weight: 600;
+}
+
+.rank_txt2 {
+    color: rgb(131, 131, 131);
+    margin: 0;
+    font-size: 1vw;
+    font-weight: 600;
+}
+
+.bar {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    height: 1vh;
+    border-radius: 10px;
+    margin-top: 1vh;
+    border: 0.1px solid rgba(132, 132, 132, 0.433);
+    background-color: #4b4b4b4e;
+}
+
+.extand_bar {
+    height: .7vh;
+    border-radius: 10px;
+    background: linear-gradient(to right, rgb(118, 255, 33), rgb(255, 157, 173), rgb(171, 29, 171));
+}
+
+.perhour {
+     background-color: #ffffff26;
+    width: 55%;
+    height: 6.5vh;
+    margin-right: 1.5vw;
+    border-radius: 2vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: inset 0px -1vw 1vw 0px #ffcd4d21;
+    cursor: pointer; 
+} 
+
+.img2 {
+    pointer-events: none;
+    width: 2.5vw; /* Increased for better visibility */
+}
+
+.coinsperhour {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profithour_txt {
+    margin: 5;
+    font-size: .1vw;
+    color: rgb(165 165 165 / 81%);
+}
+
+.coins_hour {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.line {
+    width: 0.12vw;
+    height: 4vh;
+    background-color: #898989a1;
+}
+
+.img3 {
+    pointer-events: none;
+    width: 1.6vw; /* Slightly increased for better visibility */
+    margin-left: .8vw;
+}
+
+.coinsinhour_txt {
+    color: white;
+    font-size: .8vw;
+    font-weight: 600;
+    margin: 0 0 .2vw .4vw;
+}
+
+.img4 {
+    pointer-events: none;
+    width: 1.6vw; /* Increased for better visibility */
+    margin-right: .8vw;
+    margin-left: .6vw;
+}
+
+.setting {
+    color: #eeeeee;
+    font-size: 1.4vw;
+}
+
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="heading_container">
+        <div class="name_con">
+            <img class="img1" src="assets/hamster.jpg" alt="">
+            <p class="name"><span id="username">CHUNTECH</span> (CEO)</p>
+        </div>
+        <div class="rank_perhour">
+            <div class="rank_bar">
+                <div class="rank">
+                    <p id="rank_name" class="rank_txt1">Bronze></p>
+                    <p class="rank_txt2">
+                        <span id="rank_num" style="color:white;">1</span>/10
+                    </p>
+                </div>
+                <div class="bar">
+                    <div id="arr" class="extand_bar"></div>
+                </div>
+            </div>
+            <div class="perhour">
+                <img class="img2" src="assets/binance.png" alt="">
+                <div class="coinsperhour">
+                    <p class="profithour_txt">Profit per hour</p>
+                    <div class="coins_hour">
+                        <div class="line"></div>
+                        <img class="img3" src="assets/coin.png" alt="">
+                        <p class="coinsinhour_txt">0</p>
+                        <img class="img4" src="assets/info.png" alt="">
+                        <div class="line"></div>
+                    </div>
+                </div>
+                <i class="fa-solid fa-gear setting"></i>
+            </div>
+        </div>
+    </div>
+
+   
+
+    <div class="game-container">
+        <div class="scoreboard" id="scoreboard">
+            <div>💰: <span id="total-balance">0</span></div>
+        </div>
+
+
+    
+
+
+        <div class="hamster-border">
+            <div class="hamster-area" id="hamster">
+                <center>
+                    <img src="pics.png" alt="pics" class="pics">
+                </center>
+            </div>
+        </div>
+    </div>
+
+    <div id="tab-earn" class="tab-content">
+        <div class="earn-item">
+            <img src="https://img.icons8.com/?size=100&id=k4jADXhS5U1t&format=png&color=000000" alt="Telegram">
+            <a href="https://t.me/yourtelegramchannel" target="_blank" onclick="earnCoins(100)">10 Points</a>
+        </div>
+        <div class="earn-item">
+            <img src="https://img.icons8.com/?size=100&id=nj0Uj45LGUYh&format=png&color=000000" alt="Instagram">
+            <a href="https://www.instagram.com/yourinstagram" target="_blank" onclick="earnCoins(100)">10 Points</a>
+        </div>
+        <div class="earn-item">
+            <img src="https://img.icons8.com/?size=100&id=qLVB1tIe9Ts9&format=png&color=000000" alt="YouTube">
+            <a href="https://www.youtube.com/youryoutubechannel" target="_blank" onclick="earnCoins(100)">10 Points</a>
+        </div>
+    </div>
+
+
+
+
+    
+
+    <div class="last_container">
+        <div class="boxes3 box31">
+           <a href=""><img class="last_imgs" src="assets/binance.png" alt=""></a> 
+            <p class="last_txts">Exchange</p>
+        </div>
+        <div class="boxes3 box32">
+            <img class="last_imgs pickaxe" src="assets/pickaxe.png" alt="">
+            <p class="last_txts">Mine</p>
+        </div>
+        <div class="boxes3 box33">
+            <img class="last_imgs friends" src="assets/friends.png" alt="">
+            <p class="last_txts">Friends</p>
+        </div>
+        <div class="boxes3 box34">
+            <img class="last_imgs last_coin" src="assets/coin (1).png" alt="">
+            <p class="last_txts">Earn</p>
+        </div>
+        <div class="boxes3 box35">
+            <img class="last_imgs" src="assets/hamster_coin.png" alt="">
+            <p class="last_txts">Airdrop</p>
+        </div>
+    </div>
+    <script>
+        let totalBalance = 0;
+
+        document.getElementById("hamster").addEventListener("click", function (event) {
+            const hamster = this.querySelector(".pics");
+            const scoreboard = document.getElementById("scoreboard");
+
+            // Add 100 points to the total balance
+            totalBalance += 10;
+            updateBalanceDisplay();
+
+            // Get the click position
+            const clickX = event.clientX;
+            const clickY = event.clientY;
+
+            // Get the scoreboard position
+            const scoreboardRect = scoreboard.getBoundingClientRect();
+            const scoreboardX = scoreboardRect.left + scoreboardRect.width / 2;
+            const scoreboardY = scoreboardRect.top;
+
+            // Create a new point element for each click
+            const point = document.createElement('div');
+            point.classList.add('point', 'flying-point');
+            point.textContent = '+10';
+            document.body.appendChild(point);
+
+            // Set the point's starting position at the click position
+            point.style.left = `${clickX}px`;
+            point.style.top = `${clickY}px`;
+
+            // Set custom properties for the animation
+            point.style.setProperty('--click-x', `${clickX}px`);
+            point.style.setProperty('--click-y', `${clickY}px`);
+            point.style.setProperty('--scoreboard-x', `${scoreboardX}px`);
+            point.style.setProperty('--scoreboard-y', `${scoreboardY}px`);
+
+            // Remove the point element after the animation completes
+            point.addEventListener('animationend', function () {
+                point.remove();
+            });
+
+            // Hamster vibration animation
+            hamster.classList.add("hitting");
+            hamster.addEventListener("animationend", function () {
+                hamster.classList.remove("hitting");
+            });
+
+            // Vibrate device
+            window.navigator.vibrate([5]);
+        });
+
+        function updateBalanceDisplay() {
+            document.getElementById("total-balance").textContent = totalBalance.toLocaleString();
+        }
+    </script>
+</body>
+
+</html>
